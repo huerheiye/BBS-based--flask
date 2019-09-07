@@ -1,0 +1,613 @@
+
+{% extends "topic/base1.html" %}
+{% block title %}修改个人信息{% endblock%}
+{% block main %}
+
+{#    <div id='main'>#}
+{#    <div id="sidebar">#}
+{#    <div class="panel">#}
+{#            <div class="header">#}
+{#                <span class="col_fade">个人信息</span>#}
+{#            </div>#}
+{#            <div class="inner">#}
+{#                <div class="user_card">#}
+{#                    <div>#}
+{#                        <a class="user_avatar">#}
+{#                            <img src="{{ u.image }}">#}
+{#                        </a>#}
+{#                        <span class="user_name">#}
+{#                            <a class="dark">{{ u.username }}</a>#}
+{#                        </span>#}
+{##}
+{#                        <div class="space clearfix"></div>#}
+{#                        <span class="signature">#}
+{#                             {{ u.signature }}#}
+{#                        </span>#}
+{##}
+{#                    </div>#}
+{#                         <a href="/topic/new?board_id=-1" class="create_topic_btn">#}
+{#                        <span class="span-success">发布话题</span>#}
+{#                         </a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{##}
+{#        <div id='content'>#}
+{#            <div class="panel">#}
+{#                <div class="header">#}
+{#                    <ul class="breadcrumb">#}
+{#                        <li><a href="/topic">主页</a><span class="divider">/</span></li>#}
+{#                        <li class="active">设置</li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="inner">#}
+{#                    <form id="setting_form" class="form-horizontal"  method="post" action="{{ url_for('.avatar_add') }}" enctype="multipart/form-data">#}
+{#                        <div class="control-group">#}
+{#                            <div class="avatar-upload">#}
+{#                                <div class="avatar-edit">#}
+{#                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>#}
+{#                                    <label for="imageUpload"></label>#}
+{#                                </div>#}
+{#                                <div class="avatar-preview">#}
+{#                                    <div id="imagePreview"#}
+{#                                         style="background-image: url(http://i.pravatar.cc/500?img=7);">#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#                            <label class="control-label" for="name">用户头像</label>#}
+{##}
+{#                            <div class="controls">#}
+{#                                <input type="file" name="avatar">#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                            <div class="form-actions">#}
+{#                            <input type="submit" class="span-primary submit_btn" data-loading-text="保存中.." value="保存设置">#}
+{#                        </div>#}
+{#                    </form>#}
+{##}
+{##}
+{#                    <form id="setting_form" class="form-horizontal" method="post" action="{{ url_for('index.update_password') }}">#}
+{#                        <div class="control-group">#}
+{#                            <label class="control-label" for="name">用户名</label>#}
+{##}
+{#                            <div class="controls">#}
+{#                                <input class="input-xlarge readonly" id="name" name="name" size="30" type="text"#}
+{#                                       readonly="true" value="{{ u.username }}">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="control-group">#}
+{#                            <label class="control-label" for="email">邮箱</label>#}
+{##}
+{#                            <div class="controls">#}
+{#                                <input class="input-xlarge readonly" id="email" name="email" size="30" type="text"#}
+{#                                       readonly="true" value="{{ u.email }}">#}
+{##}
+{#                                <p>同时决定了 Gravatar 头像</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="control-group">#}
+{#                            <label class="control-label" for="location">地址</label>#}
+{##}
+{#                            <div class="controls">#}
+{#                                <input class="input-xlarge" id="location" name="location" size="30" type="text"#}
+{#                                       value="{{ u.site }}">#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="control-group">#}
+{#                            <label class="control-label" for="weibo">博客</label>#}
+{##}
+{#                            <div class="controls">#}
+{#                                <input class="input-xlarge" id="weibo" name="weibo" size="30" type="text" value=""#}
+{#                                       placeholder="{{ u.blog }}">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="control-group">#}
+{#                            <label class="control-label" for="github">Github</label>#}
+{##}
+{#                            <div class="controls">#}
+{#                                <input class="input-xlarge" id="github" name="github" size="30" type="text"#}
+{#                                       value="{{ u.github }}" placeholder="github" >#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="control-group">#}
+{#                            <label class="control-label" for="signature">个性签名</label>#}
+{##}
+{#                            <div class="controls">#}
+{#                                <textarea class="input-xlarge" id="signature" name="{{ u.signature }}" size="30"></textarea>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <input type="hidden" id="action" name="action" value="change_setting">#}
+{#                        <input type="hidden" name="_csrf" value="">#}
+{##}
+{#                        <div class="form-actions">#}
+{#                            <input type="submit" class="span-primary submit_btn" data-loading-text="保存中.." value="保存设置">#}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#<form class="form-horizontal" method="post" action="{{ url_for('index.update_sgin') }}">#}
+{#    <div class="control-group">#}
+{#        <label class="control-label">用户名</label>#}
+{#        <div class="controls">#}
+{#            <input type="text" class="input-xlarge" name="username">#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="control-group">#}
+{#        <label class="control-label">个性签名</label>#}
+{#        <div class="controls">#}
+{#            <input type="text" class="input-xlarge" name="sign">#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="form-actions" action="{{ url_for('index.update_sgin') }}" >#}
+{#        <input type="submit" class="span-primary" value="保存设置">#}
+{#    </div>#}
+{#</form>#}
+{##}
+{#<div class="panel">#}
+{#    <div class="header">#}
+{#      <span class="col_fade">更改密码</span>#}
+{#    </div>#}
+{#    <div class="inner">#}
+{#      <form id="change_pass_form"  class="form-horizontal"  method="post" action="{{ url_for('index.update_password') }}">#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="old_pass">当前密码</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge" type="password" id="old_pass" name="password" size="30">#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="new_pass">新密码</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge" type="password" id="new_pass" name="newpassword" size="30">#}
+{#          </div>#}
+{#        </div>#}
+{#        <input type="hidden" id="action" name="action" value="change_password">#}
+{#        <input type="hidden" name="_csrf" value="x2xuIOoL-1D9wpcmeKwCDlvHAYZyk5lzsfKk">#}
+{##}
+{#        <div class="form-actions">#}
+{#          <input type="submit" class="span-primary submit_btn" data-loading-text="更改中.." value="更改密码">#}
+{#        </div>#}
+{#      </form>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{##}
+{##}
+{#<form class="form-horizontal" method="post" class="form-horizontal"  action="{{ url_for('index.update_password') }}">#}
+{#    <div class="control-group">#}
+{#        <label class="control-label">当前密码</label>#}
+{#        <div class="controls">#}
+{#            <input type="text" class="input-xlarge" name="password">#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="control-group">#}
+{#        <label class="control-label">新密码</label>#}
+{#        <div class="controls">#}
+{#            <input type="text" class="input-xlarge" name="newpassword">#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="form-actions" action="{{ url_for('index.update_password') }}">#}
+{#        <input type="submit" class="span-primary" value="更改密码">#}
+{#    </div>#}
+{#</form>#}
+{#<form method="post"#}
+{#      action="{{ url_for('.avatar_update') }}"#}
+{#      enctype="multipart/form-data"#}
+{#>#}
+{#    <input type="file" name="new_avatar">#}
+{#    <button type="submit">上传头像</button>#}
+{#</form>#}
+{##}
+{#<img src="{{ user.image }} ">#}
+{##}
+{##}
+{#<div id="main">#}
+{##}
+{##}
+{##}
+{#<div id="content">#}
+{#  <div class="panel">#}
+{#    <div class="header">#}
+{#      <ul class="breadcrumb">#}
+{#        <li><a href="/">主页</a><span class="divider">/</span></li>#}
+{#        <li class="active">设置</li>#}
+{#      </ul>#}
+{#    </div>#}
+{#    <div class="inner">#}
+{##}
+{##}
+{#      <form id="setting_form" class="form-horizontal" action="/setting" method="post">#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="name">用户名</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge readonly" id="name" name="name" size="30" type="text" readonly="true" value="huerheiye">#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="email">电子邮件</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge readonly" id="email" name="email" size="30" type="text" readonly="true" value="672670915@qq.com">#}
+{##}
+{#            <p>同时决定了 Gravatar 头像</p>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="url">个人网站</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge" id="url" name="url" size="30" type="text" value="">#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="location">所在地点</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge" id="location" name="location" size="30" type="text" value="">#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="weibo">微博</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge" id="weibo" name="weibo" size="30" type="text" value="" placeholder="e.g. http://weibo.com/cnodejs">#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="github">GitHub</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge" id="github" name="github" size="30" type="text" value="@huerheiye" placeholder="@username" readonly="readonly">#}
+{#            <p>请通过 GitHub 登陆 CNode 来修改此处</p>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="signature">个性签名</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <textarea class="input-xlarge" id="signature" name="signature" size="30"></textarea>#}
+{#          </div>#}
+{#        </div>#}
+{#        <input type="hidden" id="action" name="action" value="change_setting">#}
+{#        <input type="hidden" name="_csrf" value="x2xuIOoL-1D9wpcmeKwCDlvHAYZyk5lzsfKk">#}
+{##}
+{#        <div class="form-actions">#}
+{#          <input type="submit" class="span-primary submit_btn" data-loading-text="保存中.." value="保存设置">#}
+{#        </div>#}
+{#      </form>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{#  <div class="panel">#}
+{#    <div class="header">#}
+{#      <span class="col_fade">更改密码</span>#}
+{#    </div>#}
+{#    <div class="inner">#}
+{#      <form id="change_pass_form" class="form-horizontal" action="/setting" method="post">#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="old_pass">当前密码</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge" type="password" id="old_pass" name="old_pass" size="30">#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="new_pass">新密码</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge" type="password" id="new_pass" name="new_pass" size="30">#}
+{#          </div>#}
+{#        </div>#}
+{#        <input type="hidden" id="action" name="action" value="change_password">#}
+{#        <input type="hidden" name="_csrf" value="x2xuIOoL-1D9wpcmeKwCDlvHAYZyk5lzsfKk">#}
+{##}
+{#        <div class="form-actions">#}
+{#          <input type="submit" class="span-primary submit_btn" data-loading-text="更改中.." value="更改密码">#}
+{#        </div>#}
+{#      </form>#}
+{#    </div>#}
+{#  </div>#}
+{#<div class="panel">#}
+{#    <div class="header">#}
+{#      <span class="col_fade">更改密码</span>#}
+{#    </div>#}
+{#    <div class="inner">#}
+{#      <form id="change_pass_form" method="post" action="{{ url_for('index.update_password') }}">#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="old_pass">当前密码</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge" type="password" id="old_pass" name="password" size="30">#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="control-group">#}
+{#          <label class="control-label" for="new_pass">新密码</label>#}
+{##}
+{#          <div class="controls">#}
+{#            <input class="input-xlarge" type="password" id="new_pass" name="newpassword" size="30">#}
+{#          </div>#}
+{#        </div>#}
+{#        <input type="hidden" id="action" name="action" value="change_password">#}
+{#        <input type="hidden" name="_csrf" value="x2xuIOoL-1D9wpcmeKwCDlvHAYZyk5lzsfKk">#}
+{##}
+{#        <div class="form-actions">#}
+{#          <input type="submit" class="span-primary submit_btn" data-loading-text="更改中.." value="更改密码">#}
+{#        </div>#}
+{#      </form>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{##}
+{##}
+{##}
+{#  <div class="panel">#}
+{#    <div class="header">#}
+{#      <span class="col_fade">Access Token</span>#}
+{#    </div>#}
+{#    <div class="inner">#}
+{#      <div>#}
+{#        <input type="button" class="span-primary refreshToken" value="刷新Token">#}
+{#      </div>#}
+{#      <div>#}
+{#        <span>字符串：</span>#}
+{#        <span id="accessToken">b7a8d64d-d303-4564-93d2-ef97911e6e6e</span>#}
+{#      </div>#}
+{#      <div>#}
+{#        <span>二维码：</span>#}
+{#        <span id="access-token-qrcode" title="b7a8d64d-d303-4564-93d2-ef97911e6e6e"><canvas width="200" height="200" style="display: none;"></canvas><img alt="Scan me!" style="display: block;" src="data:image/png;base64,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"></span>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<script type="text/javascript">#}
+{#  $(function() {#}
+{#    // qrcode generate#}
+{#    var accessToken = "b7a8d64d-d303-4564-93d2-ef97911e6e6e";#}
+{#    var qrcode = new QRCode(document.getElementById("access-token-qrcode"), {#}
+{#      text: accessToken,#}
+{#      width: 200,#}
+{#      height: 200,#}
+{#    });#}
+{#    // END qrcode generate#}
+{##}
+{#    // refreshToken#}
+{#    $(".refreshToken").on("click", function() {#}
+{#      $.post("/user/refresh_token", function(result) {#}
+{#        if (result.status === 'success') {#}
+{#          $("#accessToken").text(result.accessToken);#}
+{#          qrcode.makeCode(result.accessToken)#}
+{#        } else {#}
+{#          alert(result.message);#}
+{#        }#}
+{#      })#}
+{#    })#}
+{#   });#}
+{#</script>#}
+{##}
+{#</div>#}
+{#    <script id="rendered-js">#}
+{#      function readURL(input) {#}
+{#  if (input.files && input.files[0]) {#}
+{#    var reader = new FileReader();#}
+{#    reader.onload = function (e) {#}
+{#      $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');#}
+{#      $('#imagePreview').hide();#}
+{#      $('#imagePreview').fadeIn(650);#}
+{#    };#}
+{#    reader.readAsDataURL(input.files[0]);#}
+{#  }#}
+
+{#$("#imageUpload").change(function () {#}
+{#  readURL(this);#}
+
+{#      //# sourceURL=pen.js#}
+{#    </script>#}
+<head>
+<style>
+    .avatar-upload .avatar-button {
+        text-align:center;
+        vertical-align:middel;
+
+    }
+    .avatar-form {
+    position: relative;
+    max-width: 205px;
+    margin: auto 170px;
+}
+    .avatar-upload .avatar-button button {
+    display: inline-block;
+    width: 68px;
+    height: 68px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.2s ease-in-out;
+}
+
+    .form-actions {
+    border-top: none;
+    background-color: #e1e1e1;
+}
+
+{#    .avatar-upload .avatar-button button:after {#}
+{#    content: "\f040";#}
+{#    font-family: 'FontAwesome';#}
+{#    color: #757575;#}
+{#    position: absolute;#}
+{#    top: 10px;#}
+{#    left: 0;#}
+{#    right: 0;#}
+{#    text-align: center;#}
+{#    margin: auto;#}
+{#}#}
+</style>
+</head>
+
+<body translate="no">
+<div class="container">
+    {#<h1>#}
+    {#<small>with preview</small>#}
+    {#</h1>#}
+{#    <form method="post" action="{{ url_for('.avatar_add')}}" enctype="multipart/form-data">#}
+{#    <input type="file" name="avatar">#}
+{#    <button type="submit">上传头像</button>#}
+{#    </form>#}
+    <div class="avatar-upload">
+        <form method="post" action="{{ url_for('index.avatar_add') }}" enctype="multipart/form-data" >
+            <div class="avatar-edit">
+                <input type="file" id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg">
+                <label for="imageUpload"></label>
+
+            </div>
+
+            <div class="avatar-preview">
+                <div id="imagePreview" style="background-image: url({{ u.image }});">
+                </div>
+            </div>
+            <div class="avatar-button" >
+            <button type="submit"  method="post" action="{{ url_for('index.avatar_add') }}"><i class="iconfont icontijiao" style="font-size:150%"></i> 上传</button>
+                </div>
+        </form>
+        </div>
+    <div class="avatar-form">
+    <form id="setting_form" class="form-horizontal" method="post" action="{{ url_for('index.update_sgin') }}">
+        <div class="control-group">
+            <label class="control-label" for="name"><i class="iconfont icondenglu"></i></label>
+
+            <div class="controls">
+                <input class="input-xlarge readonly" id="name" name="name" size="30" type="text"
+                       readonly="true" value="{{ u.username }}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="email"><i class="iconfont iconyouxiang"></i></label>
+
+            <div class="controls">
+                <input class="input-xlarge readonly" id="email" name="email" size="30" type="text"
+                       readonly="true" value="{{ u.email }}"placeholder="邮箱">
+
+{#                    <p>同时决定了 Gravatar 头像</p>#}
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="location"><i class="iconfont icondizhi"></i></label>
+
+            <div class="controls">
+                <input class="input-xlarge" id="location" name="location" size="30" type="text"
+                       value="" placeholder="地址">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="weibo"><i class="iconfont iconweibo"></i></label>
+
+            <div class="controls">
+                <input class="input-xlarge" id="weibo" name="blog" size="30" type="text" value=""
+                       placeholder="微博">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="github"><i class="iconfont icongithub"></i></label>
+
+            <div class="controls">
+                <input class="input-xlarge" id="github" name="github" size="30" type="text"
+                       value="" placeholder="github">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="signature"><i class="iconfont iconsignature"></i></label>
+
+            <div class="controls">
+                <textarea class="input-xlarge" id="signature" name="signature"  value="" size="30"placeholder="个性签名"></textarea>
+            </div>
+        </div>
+        <input type="hidden" id="action" name="action" value="change_setting">
+        <input type="hidden" name="_csrf" value="">
+
+        <div class="form-actions">
+            <input type="submit" class="span-primary submit_btn" data-loading-text="保存中.." value="保存设置">
+        </div>
+    </form>
+        <form id="change_pass_form" class="form-horizontal" action="{{ url_for('index.update_password') }}" method="post">
+        <div class="control-group">
+          <label class="control-label" for="old_pass"><i class="iconfont iconpassword"></i></label>
+
+          <div class="controls">
+            <input class="input-xlarge" type="password" id="old_pass" name="old_pass" size="30" placeholder="当前密码">
+          </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="new_pass"><i class="iconfont iconreset_password"></i></label>
+
+          <div class="controls">
+            <input class="input-xlarge" type="password" id="new_pass" name="new_pass" size="30" placeholder="新密码">
+          </div>
+        </div>
+        <input type="hidden" id="action" name="action" value="change_password">
+        <input type="hidden" name="_csrf" value="x2xuIOoL-1D9wpcmeKwCDlvHAYZyk5lzsfKk">
+
+        <div class="form-actions">
+          <input type="submit" class="span-primary submit_btn" data-loading-text="更改中.." value="更改密码">
+        </div>
+      </form>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script id="rendered-js">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imageUpload").change(function () {
+        readURL(this);
+    });
+    //# sourceURL=pen.js
+</script>
+
+
+</body>
+
+
+
+{% endblock %}
